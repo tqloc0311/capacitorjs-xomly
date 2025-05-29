@@ -3,7 +3,7 @@ import { getAnalytics } from "firebase/analytics"
 import { getFirestore } from "firebase/firestore/lite"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCs96qXhxUO1oWuNtkaYvavdgEMayGp0Kk",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: "xomly-28369.firebaseapp.com",
     projectId: "xomly-28369",
     storageBucket: "xomly-28369.firebasestorage.app",
