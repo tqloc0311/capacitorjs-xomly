@@ -20,6 +20,8 @@ import { IonReactRouter } from "@ionic/react-router"
 import { Route } from "react-router-dom"
 
 import SplashPage from "../pages/splash/splash-page"
+import HomePage from "../pages/home/home-page"
+import PostIncidentPage from "../pages/post-incident/post-incident-page"
 
 setupIonicReact()
 
@@ -28,6 +30,12 @@ const App: React.FC = () => (
         <IonReactRouter>
             <IonRouterOutlet>
                 <Route path="/" exact component={SplashPage} />
+                <Route path="/home" exact component={HomePage} />
+                <Route
+                    path="/post-incident"
+                    exact
+                    component={PostIncidentPage}
+                />
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>

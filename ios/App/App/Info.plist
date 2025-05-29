@@ -45,5 +45,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location to provide you with the best experience.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to provide you with the best experience.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location to provide you with the best experience.</string>
 </dict>
 </plist>

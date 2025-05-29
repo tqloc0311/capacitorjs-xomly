@@ -1,0 +1,11 @@
+ion-textarea.custom {
+    --placeholder-color: #ddd;
+    --placeholder-opacity: 1;
+
+    --padding-bottom: 10px;
+    --padding-end: 20px;
+    --padding-start: 20px;
+    --padding-top: 10px;
+
+    --ion-item-border-color: #0000;
+}
