@@ -7,6 +7,7 @@ PODS:
     - IONGeolocationLib (~> 1.0)
   - CapacitorNativeSettings (7.0.1):
     - Capacitor
+  - CryptoSwift (1.8.4)
   - IONGeolocationLib (1.0.0)
 
 DEPENDENCIES:
@@ -14,9 +15,11 @@ DEPENDENCIES:
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
   - CapacitorNativeSettings (from `../../node_modules/capacitor-native-settings`)
+  - CryptoSwift
 
 SPEC REPOS:
   trunk:
+    - CryptoSwift
     - IONGeolocationLib
 
 EXTERNAL SOURCES:
@@ -34,8 +37,9 @@ SPEC CHECKSUMS:
   CapacitorCordova: 5967b9ba03915ef1d585469d6e31f31dc49be96f
   CapacitorGeolocation: b005744861676af9abd19a0682f0b1af32cc2c99
   CapacitorNativeSettings: bef37b3c7e2184da7416a3f162c71de19fd27593
+  CryptoSwift: e64e11850ede528a02a0f3e768cec8e9d92ecb90
   IONGeolocationLib: 81f33f88d025846946de2cf63b0c7628e7c6bc9d
 
-PODFILE CHECKSUM: 4c3851654f609677ce8d7cf639a194e9b2ac8507
+PODFILE CHECKSUM: 940df0b429ed3f897925c8c6382a91b101add341
 
 COCOAPODS: 1.16.2

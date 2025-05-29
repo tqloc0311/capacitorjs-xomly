@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { Geolocation, type PermissionStatus } from "@capacitor/geolocation"
-import { delay } from "../../util/util"
 import useAlertPresenter from "../../hooks/use-alert-presenter"
 import type { Coordinate } from "../../types/coordinate"
+import useIncidentCategoryStore from "../../store/incident-category"
+import useIncidentStore from "../../store/incident"
 
 const usePostIncidentPage = () => {
     const { showLoading, showErrorAlert, showSuccessAlert, dismissLoading } =
@@ -13,14 +14,22 @@ const usePostIncidentPage = () => {
         useState<PermissionStatus | null>(null)
     const [incidentSummary, setIncidentSummary] = useState("")
     const [incidentDescription, setIncidentDescription] = useState("")
+    const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+        null
+    )
 
     const isSendButtonEnabled = useMemo(() => {
         return (
             incidentSummary.length > 0 &&
-            incidentDescription.length > 0 &&
+            selectedCategoryId !== null &&
             coordinate !== null
         )
-    }, [incidentSummary, incidentDescription, coordinate])
+    }, [incidentSummary, selectedCategoryId, coordinate])
+
+    const { incidentCategories, fetchIncidentCategories } =
+        useIncidentCategoryStore((state) => state)
+
+    const { postIncident } = useIncidentStore((state) => state)
 
     const checkLocationPermission = useCallback(async () => {
         try {
@@ -64,12 +73,18 @@ const usePostIncidentPage = () => {
 
     useEffect(() => {
         fetchLocation()
-    }, [fetchLocation])
+        fetchIncidentCategories()
+    }, [fetchLocation, fetchIncidentCategories])
 
     const sendIncident = async () => {
         try {
             await showLoading(textConstants.sendingIncident)
-            await delay(1000)
+            await postIncident({
+                incidentSummary,
+                incidentDescription,
+                incidentCategoryId: incidentCategories[0].id,
+                incidentLocation: coordinate!,
+            })
             await showSuccessAlert(textConstants.incidentSentSuccessfully)
         } catch (error) {
             console.error(error)
@@ -91,6 +106,9 @@ const usePostIncidentPage = () => {
         incidentDescription,
         setIncidentSummary,
         setIncidentDescription,
+        incidentCategories,
+        selectedCategoryId,
+        setSelectedCategoryId,
     }
 }
 

@@ -16,6 +16,7 @@ import TextInput from "../../components/text-input"
 import TextArea from "../../components/text-area"
 import { openAppSettings } from "../../util/util"
 import Button from "../../components/button"
+import IncidentCategorySelect from "./component/incident-category-select"
 
 const PostIncidentPage: React.FC = () => {
     const history = useHistory()
@@ -28,6 +29,9 @@ const PostIncidentPage: React.FC = () => {
         incidentDescription,
         setIncidentSummary,
         setIncidentDescription,
+        incidentCategories,
+        selectedCategoryId,
+        setSelectedCategoryId,
     } = usePostIncidentPage()
 
     const handleBack = () => {
@@ -59,8 +63,11 @@ const PostIncidentPage: React.FC = () => {
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
+
             <IonContent className="ion-padding">
-                <Text className="text-lg font-bold">Incident summary</Text>
+                <Text className="text-lg font-bold">
+                    {textConstants.incidentSummary}
+                </Text>
                 <TextInput
                     placeholder={textConstants.incidentSummaryPlaceholder}
                     className="ion-margin-top"
@@ -74,7 +81,9 @@ const PostIncidentPage: React.FC = () => {
 
                 <p className="h-3" />
 
-                <Text className="text-lg font-bold">Incident description</Text>
+                <Text className="text-lg font-bold">
+                    {textConstants.incidentDescription}
+                </Text>
                 <TextArea
                     placeholder={textConstants.incidentDescriptionPlaceholder}
                     className="ion-margin-top"
@@ -88,9 +97,19 @@ const PostIncidentPage: React.FC = () => {
                 />
 
                 <p className="h-3" />
+                <Text className="text-lg font-bold">
+                    {textConstants.incidentCategory}
+                </Text>
+                <IncidentCategorySelect
+                    incidentCategories={incidentCategories}
+                    selectedCategoryId={selectedCategoryId}
+                    onSelect={setSelectedCategoryId}
+                />
+
+                <p className="h-3" />
 
                 <Text className="text-lg font-bold">
-                    {textConstants.incidentLocationPlaceholder}
+                    {textConstants.incidentLocation}
                 </Text>
                 {permissionStatus?.location === "denied" && (
                     <DeniedLocationPermission />
@@ -127,10 +146,13 @@ const DeniedLocationPermission = () => {
 export default PostIncidentPage
 
 const textConstants = {
+    incidentSummary: "Incident summary",
+    incidentDescription: "Incident description",
+    incidentCategory: "Incident category",
+    incidentLocation: "Incident location",
     deniedLocationPermission: "Location permission denied",
     settings: "Settings",
     incidentSummaryPlaceholder: "Enter incident summary",
     incidentDescriptionPlaceholder: "Enter incident description",
-    incidentLocationPlaceholder: "Enter incident location",
     send: "Send",
 }
